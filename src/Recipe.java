@@ -1,4 +1,5 @@
-// src/Recipe.java
+
+    // src/Recipe.java
 import java.util.ArrayList;
 
 public class Recipe {
@@ -19,6 +20,9 @@ public class Recipe {
         this.name = name;
         this.servings = servings;
     }
+
+
+
     /**
      * Adds an ingredient and its amount to the recipe.
      *
@@ -34,49 +38,82 @@ public class Recipe {
      * @param ingredientName the name of the ingredient
      * @param amount the amount of the ingredient
      */
-    public void addIngredient(String ingredientName, double amount) {
-        if (ingredientName == null || ingredientName.trim().isEmpty()) {
-            System.out.println("[DEBUG] Invalid ingredient name. Ingredient not added.");
-            return;
-        }
-
-        if (amount <= 0) {
-            System.out.println("[DEBUG] Invalid ingredient amount. Ingredient not added.");
-            return;
-        }
-
-        ingredientNames.add(ingredientName);
-        ingredientAmounts.add(amount);
+   public void addIngredient(String ingredientName, double amount) {
+        // TODO:
+        // - Validate ingredientName non-null and non-blank
+        // - Validate amount > 0
+        // - Add to ingredientNames and ingredientAmounts in matching positions
+        // - done below
+    if (ingredientName == null || ingredientName.trim().isEmpty()) {
+        throw new IllegalArgumentException("Ingredient name cannot be null or blank");
     }
+    if (amount <= 0) {
+        throw new IllegalArgumentException("Amount must be greater than 0");
+    }
+
+    ingredientNames.add(ingredientName);
+    ingredientAmounts.add(amount);
+}
 
 
     public int totalIngredientCount() {
         // TODO: return number of ingredient entries
-        throw new UnsupportedOperationException("TODO");
+        return ingredientNames.size();
+        //throw new UnsupportedOperationException("TODO");
     }
 
-    public void scaleToServings(int newServings) {
-        // TODO:
+     
+public void scaleToServings(int newServings) {
+
+           // TODO:
         // - If newServings <= 0 throw IllegalArgumentException
         // - Compute factor = (double) newServings / servings
         // - Multiply each ingredient amount by factor
         // - Update servings
-        throw new UnsupportedOperationException("TODO");
+    if (newServings <= 0) {
+        throw new IllegalArgumentException("Servings must be greater than 0");
     }
 
+    double factor = (double) newServings / servings;
+
+    for (int i = 0; i < ingredientAmounts.size(); i++) {
+        double scaled = ingredientAmounts.get(i) * factor;
+        ingredientAmounts.set(i, scaled);
+    }
+
+    servings = newServings;
+}
+     
     public String toString() {
-        // TODO:
+           // TODO:
         // Return:
         // <name> (serves <servings>)
         // - <amount> <ingredient>
         // ...
         //
         // Use formatAmount(double) helper for printing amounts.
-        throw new UnsupportedOperationException("TODO");
+    StringBuilder sb = new StringBuilder();
+
+    // First line: <name> (serves <servings>)
+    sb.append(name).append(" (serves ").append(servings).append(")\n");
+
+    // Each ingredient line:
+    // - <amount> <ingredient>
+    for (int i = 0; i < ingredientNames.size(); i++) {
+        sb.append("- ")
+          .append(formatAmount(ingredientAmounts.get(i)))
+          .append(" ")
+          .append(ingredientNames.get(i))
+          .append("\n");
     }
 
-    private String formatAmount(double x) {
-        // Spec:
+    return sb.toString();
+}
+
+    
+
+     private String formatAmount(double x) {
+           // Spec:
         // - If x is an integer value, print without decimals.
         // - Else print with up to 2 decimals, trimming trailing zeros.
         //
@@ -87,6 +124,28 @@ public class Recipe {
         // 1.333 -> "1.33"
         //
         // TODO: implement.
-        throw new UnsupportedOperationException("TODO");
+    // If x is an integer (like 200.0, 3.0, etc)
+    if (x == Math.floor(x)) {
+        return String.valueOf((long) x);
     }
+
+    // Otherwise round to 2 decimals
+    double rounded = Math.round(x * 100.0) / 100.0;
+
+    // Convert to string
+    String s = String.valueOf(rounded);
+
+    // Trim trailing zeros
+    if (s.contains(".")) {
+        while (s.endsWith("0")) {
+            s = s.substring(0, s.length() - 1);
+        }
+        if (s.endsWith(".")) {
+            s = s.substring(0, s.length() - 1);
+        }
+    }
+
+    return s;
+}
+
 }
