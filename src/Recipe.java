@@ -63,13 +63,13 @@ public class Recipe {
         return ingredientNames.size();
     }
 
+    /**
+     * Scales all ingredient amounts proportionally to match {@code newServings}.
+     *
+     * @param newServings the target number of servings; must be positive
+     * @throws IllegalArgumentException if {@code newServings} is not positive
+     */
     public void scaleToServings(int newServings) {
-        /**
-         * Scales all ingredient amounts proportionally to match {@code newServings}.
-         *
-         * @param newServings the target number of servings; must be positive
-         * @throws IllegalArgumentException if {@code newServings} is not positive
-         */
         if (newServings <= 0) {
             throw new IllegalArgumentException("newServings must be positive");
         }
@@ -83,6 +83,19 @@ public class Recipe {
         this.servings = newServings;
     }
 
+    /**
+     * Returns a string representation of this recipe.
+     *
+     * <p>The format is:
+     * <pre>
+     * &lt;name&gt; (serves &lt;servings&gt;)
+     * - &lt;amount&gt; &lt;ingredient&gt;
+     * - &lt;amount&gt; &lt;ingredient&gt;
+     * ...
+     * </pre>
+     *
+     * @return a formatted multi-line string representation of this recipe
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(name).append(" (serves ").append(servings).append(")\n");
@@ -94,6 +107,17 @@ public class Recipe {
         }
 
         return sb.toString();
+    }
+
+    /**
+     * Returns a pretty-printed string representation of this recipe.
+     *
+     * <p>This method is specified in SPEC.md and delegates to {@link #toString()}.
+     *
+     * @return a formatted multi-line string representation of this recipe
+     */
+    public String toPrettyString() {
+        return toString();
     }
 
     private String formatAmount(double x) {
