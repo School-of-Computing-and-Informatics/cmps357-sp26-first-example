@@ -10,6 +10,8 @@ Before moving on to the larger app in docs, tidy up the Stage 1 pieces:
 
 With those done, the core recipe model is consistent and ready for the multi-class expansion outlined in STAGES.md and ARCHITECTURE.md.
 
+---
+
 User: Any other changes you would suggest?
 
 GitHub Copilot: Searched codebase for "Any other changes you would suggest?", 11 results
@@ -29,19 +31,22 @@ GitHub Copilot: Read [TODO](TODO.md)
 
 Using "Apply Patch"
 
-
-```
-
-```
+ 
 Updated TODO items to spell out next steps: add `toPrettyString()` and doc alignment, Javadoc for remaining `Recipe` methods, seed a small test harness, tidy `addIngredient` logging/return, and note optional refactors plus stubs for upcoming components. See TODO for details.
 
 Made changes.
+
+---
+
 
 User: Is junit or other testing indicated in this repo?
 
 GitHub Copilot: Searched codebase for "Is junit or other testing indicated in this repo?", 12 results
 
 There’s no test framework or test sources in this repo right now (no `test/` folder, build config, or JUnit dependencies). The only mention of tests is a future task in [`TODO.md`](TODO.md "TODO.md") suggesting to add a minimal JUnit harness.
+
+---
+
 
 User: Implement the testing suggested by TODO
 
@@ -56,17 +61,9 @@ Created [](file:///c%3A/Users/nicho/VS%20Code%20Projects/cmps357-sp26-first-exam
 Using "Apply Patch"
 
 
-```
-
-```
 
 
-Using "Apply Patch"
 
-
-```
-
-```
 Added a lightweight test harness and updated the task list accordingly.
 
 - Added manual assertions in RecipeTest.java covering ingredient count, scaling (including invalid input), and amount formatting via reflection on the private helper.
@@ -81,6 +78,8 @@ java -cp bin RecipeTest
 
 Made changes.
 
+---
+
 User: Add the testing config to vsocde settings
 
 GitHub Copilot: Read [](file:///c%3A/Users/nicho/VS%20Code%20Projects/cmps357-sp26-first-example/.vscode)
@@ -90,9 +89,6 @@ Read [](file:///c%3A/Users/nicho/VS%20Code%20Projects/cmps357-sp26-first-example
 Using "Apply Patch"
 
 
-```
-
-```
 
 
 Created [](file:///c%3A/Users/nicho/VS%20Code%20Projects/cmps357-sp26-first-example/.vscode/tasks.json)
@@ -108,17 +104,18 @@ Run via the VS Code Run Task picker: choose `run-tests` to build and execute.
 
 Made changes.
 
+---
+
 User: VS Code says `Error: Invalid problemMatcher reference: $javac`
 
 GitHub Copilot: Using "Apply Patch"
 
 
-```
-
-```
 Removed the problematic problem matcher from the `build-tests` task. VS Code should no longer complain. You can run `run-tests` as before.
 
 Made changes.
+
+---
 
 User: Is there a way to have the run-tests accessible through the play button or other gui than the `Run Tasks` of the command pallete?
 
@@ -130,6 +127,8 @@ You now have GUI run targets:
 - Since test is in `java.project.sourcePaths`, the Java extension should also show a play button atop the `main` method in RecipeTest.java. Click it to run without opening the command palette.
 
 Made changes.
+
+---
 
 User: Error in running test:
 
@@ -143,9 +142,6 @@ cmps357-sp26-first-example>
 GitHub Copilot: Using "Apply Patch"
 
 
-```
-
-```
 The debug launch was using a broken classpath (bin), so the class wasn’t found. I fixed the launch configs to use the workspace bin folder and to build first:
 
 - Updated launch.json:
