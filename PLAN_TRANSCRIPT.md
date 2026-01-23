@@ -158,3 +158,78 @@ The debug launch was using a broken classpath (bin), so the class wasn’t found
 Try running “Run RecipeTest” again from the Run and Debug panel; it should compile then launch without the ClassNotFound error.
 
 Made changes.
+Made changes.
+
+---
+
+User: Add a horizontal line before every `User:` prompt
+
+GitHub Copilot: Read [PLAN_TRANSCRIPT.md](PLAN_TRANSCRIPT.md)
+
+Using "Apply Patch"
+
+Read [PLAN_TRANSCRIPT.md](PLAN_TRANSCRIPT.md)
+
+Using "Apply Patch"
+
+
+Added horizontal rules before every `User:` prompt in PLAN_TRANSCRIPT.md for easier visual separation.
+
+Made changes.
+
+---
+
+User: Change links in the plan_transcript to be relative to the top of the repo, not absolute paths. Also have the link text be the filename without directory
+
+GitHub Copilot: Using "Apply Patch"
+
+
+Updated PLAN_TRANSCRIPT to use repo-relative links with filename-only text (e.g., Recipe.java, tasks.json) instead of absolute file paths.
+
+Made changes.
+
+---
+
+User: Add `Progress` notes for each stage, indicate we are in stage 1
+
+GitHub Copilot: Read [STAGES.md](docs/STAGES.md)
+
+Using "Apply Patch"
+
+
+Added progress notes to each stage in STAGES.md, marking Stage 1 as “In progress (current stage)” and all later stages as “Not started.”
+
+Made changes.
+
+---
+
+User: Add the refactoring of classes to be in the `cmps357.sp26` package at the appropriate stage.
+
+GitHub Copilot: Searched codebase for "Add the refactoring of classes to be in the `cmps357.sp26` package at the appropriate stage.", 15 results
+
+Using "Apply Patch"
+
+
+Added package refactor as a Stage 7 refinement: list now includes moving classes into the `cmps357.sp26` package.
+
+Made changes.
+
+---
+
+User: Why not put it in stage 2?
+
+GitHub Copilot: Stage 2 is about adding the collection layer, so dropping a package refactor there would mix concerns and add churn while you’re still expanding the model. The package move is safest once APIs settle (Stage 7 refinement) to avoid repeated import/namespace edits during earlier feature work. If you want it earlier, do it right before Stage 2 starts and freeze names so it doesn’t collide with ongoing feature changes.
+
+---
+
+User: Check the location of each md file and justify / suggest why to move 
+
+GitHub Copilot: Searched codebase for "Check the location of each md file and justify / suggest why to move ", 15 results
+
+Here’s a quick location review:
+
+- README.md — root is appropriate; it’s the entry point.
+- TODO.md — root is fine for project tasks.
+- PLAN_TRANSCRIPT.md — this is a chat/log; consider moving to docs (or `docs/notes/`) to declutter the root.
+- LEARNING_GIT.MD — course meta; could live under docs (e.g., `docs/LEARNING_GIT.md`) to keep root focused on the app.
+- SPEC.md, ARCHITECTURE.md, DATA_MODEL.md, STAGES.md — all belong together under docs; no move needed.
