@@ -8,7 +8,36 @@ public class RecipeTest {
         testTotalIngredientCount();
         testScaleToServings();
         testFormatAmount();
+        testToPrettyString();
+        testScaleEdgeCases();
         System.out.println("All Recipe tests passed.");
+    }
+
+    private static void testToPrettyString() {
+        Recipe r = new Recipe("Pretty", 2);
+        r.addIngredient("egg", 2.0);
+        r.addIngredient("milk", 1.5);
+
+        String s1 = r.toString();
+        String s2 = r.toPrettyString();
+
+        assertEquals("toPrettyString equals toString", s1, s2);
+    }
+
+    private static void testScaleEdgeCases() throws Exception {
+        Recipe r = new Recipe("Edge", 3);
+        r.addIngredient("sugar", 100.0);
+
+        r.scaleToServings(1);
+
+        List<Double> amounts = getIngredientAmounts(r);
+        // expect 100/3
+        assertEquals("sugar amount after scaling 3->1", 100.0 / 3.0, amounts.get(0), 1e-9);
+
+        // scaling back up should restore original
+        r.scaleToServings(3);
+        amounts = getIngredientAmounts(r);
+        assertEquals("sugar amount after scaling back 1->3", 100.0, amounts.get(0), 1e-9);
     }
 
     private static void testTotalIngredientCount() {

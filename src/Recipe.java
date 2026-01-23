@@ -36,12 +36,12 @@ public class Recipe {
      */
     public void addIngredient(String ingredientName, double amount) {
         if (ingredientName == null || ingredientName.trim().isEmpty()) {
-            System.out.println("[DEBUG] Invalid ingredient name. Ingredient not added.");
+            System.err.println("[DEBUG] Invalid ingredient name. Ingredient not added.");
             return;
         }
 
         if (amount <= 0) {
-            System.out.println("[DEBUG] Invalid ingredient amount. Ingredient not added.");
+            System.err.println("[DEBUG] Invalid ingredient amount. Ingredient not added.");
             return;
         }
 
@@ -94,6 +94,18 @@ public class Recipe {
         }
 
         return sb.toString();
+    }
+
+    /**
+     * Returns a prettified string representation of this recipe.
+     *
+     * <p>Currently delegates to {@link #toString()} for Day-1 simplicity.
+     * Future work may provide a more sophisticated pretty-print formatting.
+     *
+     * @return a user-friendly multi-line recipe description
+     */
+    public String toPrettyString() {
+        return toString();
     }
 
     private String formatAmount(double x) {
