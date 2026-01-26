@@ -66,23 +66,51 @@ Manage multiple recipes as a collection.
 ## Stage 3: Searching and Sorting
 
 **Goal**  
-Allow users to locate and view recipes efficiently.
+Allow users to locate, filter, and view recipes efficiently using flexible search criteria and stable presentation-time sorting.
 
 **Focus**
-- Read-only operations on collections
-- Separation of data storage from presentation logic
+- Read-only operations on recipe collections
+- Separation of storage, querying, and presentation logic
+- Predictable and stable search and sort behavior
 
 **Deliverables**
-- Case-insensitive name search (partial matches)
-- Front-end sorting of recipes by name
+
+### Searching
+- **Case-insensitive recipe name search**
+  - Partial (substring) matches
+  - Leading and trailing whitespace in queries is ignored
+- **Ingredient-based search**
+  - Find recipes containing at least one ingredient whose name matches the query
+  - Case-insensitive, partial matching
+- **Multi-token search**
+  - Queries containing multiple tokens (e.g., `garlic oil`)
+  - A recipe matches if *all tokens* match somewhere in the recipe
+    (recipe name or ingredient names)
+- Search operations return a new list and never modify stored recipes.
+
+### Sorting
+- **Front-end sorting by recipe name**
+  - Case-insensitive ordering
+  - Supports ascending and descending order
+- **Stable and deterministic output**
+  - Secondary comparison used when names compare equal ignoring case
+  - Sorting does not permanently reorder stored data
 
 **Acceptance Criteria**
 - Searching does not mutate stored data. ✓
 - Sorting is applied only when presenting results. ✓
 - Recipe insertion order remains unchanged internally. ✓
+- Case-insensitive name search (partial matches) is supported. ✓
+- Ingredient-based and multi-token searches return correct results. ◻︎
+- Stable secondary sort behavior is implemented. ◻︎
 
 **Progress**
-- Complete (Search implemented in RecipeBook; RecipeSorter utility created for sorting)
+- Partially complete  
+  - Case-insensitive name search implemented in `RecipeBook`
+  - Front-end name-based sorting implemented via `RecipeSorter`
+  - Ingredient-based search not yet implemented
+  - Multi-token search not yet implemented
+  - Secondary sort key for deterministic ordering not yet implemented
 
 ---
 
