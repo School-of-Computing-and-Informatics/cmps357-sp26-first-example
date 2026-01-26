@@ -1,4 +1,4 @@
-# TODO: cmps357-sp26-first-example
+# TODO: cmps357-sp26-pa1-template
 
 ## Work Completed
 

@@ -1,4 +1,4 @@
-# cmps357-sp26-first-example
+# cmps357-sp26-pa1-template
 
 ## Project Requirements
  - Java IDE such as **IntelliJ Community Edition** [Windows](https://download.jetbrains.com/idea/ideaIC-2025.2.6.1.exe?_cl=MTsxOzE7c2tod09qdG1hNXpQbERWcGpJWGlZUUZ6Ym0zUW0yVTdpSGxRWHE3RU85RVJPaGtGd2tQSmNRTW13NGpSb0lXbTs=&_gl=1*1uc1dra*_gcl_au*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*FPAU*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*_ga*MTk5NDUxODMxNy4xNzY4NTgwNjIy*_ga_9J976DJZ68*czE3Njg1ODA2MTkkbzEkZzEkdDE3Njg1ODA2NjkkajEwJGwwJGgw) [Linux](https://download.jetbrains.com/idea/ideaIC-2025.2.6.1-aarch64.tar.gz?_gl=1*njar6m*_gcl_au*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*FPAU*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*_ga*MTk5NDUxODMxNy4xNzY4NTgwNjIy*_ga_9J976DJZ68*czE3Njg1ODA2MTkkbzEkZzEkdDE3Njg1ODA2NjkkajEwJGwwJGgw) [macOS (Intel)](https://download.jetbrains.com/idea/ideaIC-2025.2.6.1.dmg?_gl=1*ue2abp*_gcl_au*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*FPAU*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*_ga*MTk5NDUxODMxNy4xNzY4NTgwNjIy*_ga_9J976DJZ68*czE3Njg1ODA2MTkkbzEkZzEkdDE3Njg1ODA2NjkkajEwJGwwJGgw) [macOS (Apple Silicone)](https://download.jetbrains.com/idea/idea-2025.3.1.1-aarch64.dmg?_gl=1*ue2abp*_gcl_au*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*FPAU*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*_ga*MTk5NDUxODMxNy4xNzY4NTgwNjIy*_ga_9J976DJZ68*czE3Njg1ODA2MTkkbzEkZzEkdDE3Njg1ODA2NjkkajEwJGwwJGgw)
@@ -9,9 +9,18 @@
 
 ## Day 1 Spec-to-Implementation (Recipe Class)
 
-Clone the repository (repo), open it in IntelliJ (Get from VCS), run `Main`.
+Clone the repository (repo), open it in IntelliJ (Get from VCS) or VS Code (Clone from Github), and then run `Main`.
 
 Our job today is to implement the TODOs in `Recipe.java` using an LLM so that the program output matches the spec in `SPEC.md`.
+
+## Syllabus README Note
+
+This `README.md` should be edited to match the syllabus README description: include concise setup and execution instructions for this project. Below are Java-specific details you should keep or expand when editing this file:
+
+- **VS Code setup**: Install the *Extension Pack for Java* (recommended) and the *Language Support for Java(TM) by Red Hat* extension. Open the project folder in VS Code and allow the Java extensions to configure the workspace.
+- **Java runtime**: Install a Java 17+ JDK (e.g., Azul Zulu or OpenJDK) and ensure `JAVA_HOME` is set or configured in VS Code settings.
+- **Run in VS Code**: Use the Java Extension Pack to run or debug the `Main` class directly (click the Run icon or use the Run | Debug options). Configure launch configurations in `.vscode/launch.json` if desired.
+- **Notes for students**: After cloning, follow these steps to configure VS Code and the JDK, then use the commands above to compile and run. Update this README with any project-specific setup steps (build tools, additional environment variables, or required extensions).
 
 Suggested workflow:
 1. Read [SPEC.md](docs/SPEC.md)
