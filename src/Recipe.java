@@ -1,14 +1,14 @@
 
-    // src/Recipe.java
+// src/Recipe.java
 import java.util.ArrayList;
+import java.util.List;
 
 public class Recipe {
     private final String name;
     private int servings;
 
-    // Parallel lists to keep Day-1 Java simple (no extra classes required).
-    private final ArrayList<String> ingredientNames = new ArrayList<>();
-    private final ArrayList<Double> ingredientAmounts = new ArrayList<>();
+    // List of Ingredient objects
+    private final ArrayList<Ingredient> ingredients = new ArrayList<>();
 
     /**
      * Create a new Recipe with the given name and number of servings.
@@ -28,6 +28,23 @@ public class Recipe {
         this.servings = servings;
     }
 
+    /**
+     * Get the name of this recipe.
+     *
+     * @return the recipe name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Get a copy of the ingredients list.
+     *
+     * @return a new list containing all ingredients
+     */
+    public List<Ingredient> getIngredients() {
+        return new ArrayList<>(ingredients);
+    }
 
 
     /**
@@ -49,7 +66,7 @@ public class Recipe {
         // TODO:
         // - Validate ingredientName non-null and non-blank
         // - Validate amount > 0
-        // - Add to ingredientNames and ingredientAmounts in matching positions
+        // - Add to ingredients list
         // - done below
         if (ingredientName == null || ingredientName.trim().isEmpty()) {
             // Invalid ingredient name: ignore the entry (tests expect this behaviour).
@@ -62,8 +79,7 @@ public class Recipe {
             return;
         }
 
-        ingredientNames.add(ingredientName);
-        ingredientAmounts.add(amount);
+        ingredients.add(new Ingredient(ingredientName, amount));
 }
 
 
@@ -74,7 +90,7 @@ public class Recipe {
      */
     public int totalIngredientCount() {
         // TODO: return number of ingredient entries
-        return ingredientNames.size();
+        return ingredients.size();
     }
 
      
@@ -101,9 +117,9 @@ public class Recipe {
 
         double factor = (double) newServings / servings;
 
-        for (int i = 0; i < ingredientAmounts.size(); i++) {
-            double scaled = ingredientAmounts.get(i) * factor;
-            ingredientAmounts.set(i, scaled);
+        for (Ingredient ingredient : ingredients) {
+            double scaled = ingredient.getAmount() * factor;
+            ingredient.setAmount(scaled);
         }
 
         servings = newServings;
@@ -136,11 +152,11 @@ public class Recipe {
 
         sb.append(name).append(" (serves ").append(servings).append(")\n");
 
-        for (int i = 0; i < ingredientNames.size(); i++) {
+        for (Ingredient ingredient : ingredients) {
             sb.append("- ")
-              .append(formatAmount(ingredientAmounts.get(i)))
+              .append(formatAmount(ingredient.getAmount()))
               .append(" ")
-              .append(ingredientNames.get(i))
+              .append(ingredient.getName())
               .append("\n");
         }
 

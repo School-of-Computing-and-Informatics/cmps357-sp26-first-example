@@ -60,9 +60,15 @@ public class RecipeTest {
 
     @SuppressWarnings("unchecked")
     private static List<Double> getIngredientAmounts(Recipe r) throws Exception {
-        Field f = Recipe.class.getDeclaredField("ingredientAmounts");
+        // Access the ingredients list and extract amounts
+        Field f = Recipe.class.getDeclaredField("ingredients");
         f.setAccessible(true);
-        return new ArrayList<>((List<Double>) f.get(r));
+        List<Ingredient> ingredients = (List<Ingredient>) f.get(r);
+        List<Double> amounts = new ArrayList<>();
+        for (Ingredient ingredient : ingredients) {
+            amounts.add(ingredient.getAmount());
+        }
+        return amounts;
     }
 
     private static int getServings(Recipe r) throws Exception {
