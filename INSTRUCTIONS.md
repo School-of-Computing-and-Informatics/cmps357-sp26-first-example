@@ -14,54 +14,42 @@ Each Stage (3, 4, 5, and 6) must be accomponied by a Demo java file following th
 
 ---
 
-## Stage 3: Searching and Sorting
+## Stage 3 (In Class): Advanced Searching and Sorting
 
-**Goal**  
-Allow users to locate, filter, and view recipes efficiently using flexible search criteria and stable presentation-time sorting.
+Stage 3 was completed in class and is included here as a reference for what your codebase should already support.
 
-**Focus**
-- Read-only operations on recipe collections
-- Separation of storage, querying, and presentation logic
-- Predictable and stable search and sort behavior
+### Search capabilities (advanced)
+Your project should already support at least the following search behaviors:
 
-**Deliverables**
+- **Case-insensitive name search**
+  - Partial matches (contains)
+  - Leading/trailing whitespace in the query is ignored
 
-### Searching
-- **Case-insensitive recipe name search**
-  - Partial (substring) matches
-  - Leading and trailing whitespace in queries is ignored
 - **Ingredient-based search**
-  - Find recipes containing at least one ingredient whose name matches the query
-  - Case-insensitive, partial matching
-- **Multi-token search**
-  - Queries containing multiple tokens (e.g., `garlic oil`)
-  - A recipe matches if *all tokens* match somewhere in the recipe
-    (recipe name or ingredient names)
-- Search operations return a new list and never modify stored recipes.
+  - Find recipes that contain an ingredient whose name matches the query (case-insensitive, partial match)
+  - This search must not modify the recipe or ingredient lists
 
-### Sorting
-- **Front-end sorting by recipe name**
+- **Multiple-token queries**
+  - A query like `garlic oil` should be treated as multiple tokens
+  - Recipes match if all tokens match somewhere in the recipe (name or ingredient list), using case-insensitive partial matching
+
+- **Search result stability**
+  - Searching is read-only
+  - Stored recipe order remains unchanged
+  - Results are returned as a new list
+
+### Sorting capabilities (advanced)
+Your project should already support sorting at presentation time, including:
+
+- **Sort by recipe name (A–Z / Z–A)**
   - Case-insensitive ordering
-  - Supports ascending and descending order
-- **Stable and deterministic output**
-  - Secondary comparison used when names compare equal ignoring case
-  - Sorting does not permanently reorder stored data
+  - Stable sorting preferred
 
-**Acceptance Criteria**
-- Searching does not mutate stored data. ✓
-- Sorting is applied only when presenting results. ✓
-- Recipe insertion order remains unchanged internally. ✓
-- Case-insensitive name search (partial matches) is supported. ✓
-- Ingredient-based and multi-token searches return correct results. 
-- Stable secondary sort behavior is implemented. 
+- **Secondary sort keys**
+  - If recipe names compare equal ignoring case, use a secondary key (such as original name, or insertion order) to ensure consistent output
 
-**Progress**
-- Partially complete  
-  - Case-insensitive name search implemented in `RecipeBook`
-  - Front-end name-based sorting implemented via `RecipeSorter`
-  - Ingredient-based search not yet implemented
-  - Multi-token search not yet implemented
-  - Secondary sort key for deterministic ordering not yet implemented
+- **No storage mutation**
+  - Sorting must not permanently reorder the underlying stored list unless you explicitly document that behavior (default expectation: do not mutate)
 
 
 ---
