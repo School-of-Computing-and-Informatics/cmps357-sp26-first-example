@@ -3,7 +3,8 @@
 ## Overview
 This assignment continues the Recipe application beyond the in-class work.
 
-- **Stages 1–3** have already been completed together in class.
+- **Stages 1–2** have already been completed together in class.
+- **Stage 3** was completed partially. Updated requiremrents are given below. 
 - **Stages 4 through 6** must be completed independently.
 - The goal is to move from a working model + collection features to a small, well-structured application.
 
@@ -11,42 +12,55 @@ You are expected to follow the project architecture and specifications provided 
 
 ---
 
-## Stage 3 (In Class): Advanced Searching and Sorting
+## Stage 3: Searching and Sorting
 
-Stage 3 was completed in class and is included here as a reference for what your codebase should already support.
+**Goal**  
+Allow users to locate, filter, and view recipes efficiently using flexible search criteria and stable presentation-time sorting.
 
-### Search capabilities (advanced)
-Your project should already support at least the following search behaviors:
+**Focus**
+- Read-only operations on recipe collections
+- Separation of storage, querying, and presentation logic
+- Predictable and stable search and sort behavior
 
-- **Case-insensitive name search**
-  - Partial matches (contains)
-  - Leading/trailing whitespace in the query is ignored
+**Deliverables**
 
+### Searching
+- **Case-insensitive recipe name search**
+  - Partial (substring) matches
+  - Leading and trailing whitespace in queries is ignored
 - **Ingredient-based search**
-  - Find recipes that contain an ingredient whose name matches the query (case-insensitive, partial match)
-  - This search must not modify the recipe or ingredient lists
+  - Find recipes containing at least one ingredient whose name matches the query
+  - Case-insensitive, partial matching
+- **Multi-token search**
+  - Queries containing multiple tokens (e.g., `garlic oil`)
+  - A recipe matches if *all tokens* match somewhere in the recipe
+    (recipe name or ingredient names)
+- Search operations return a new list and never modify stored recipes.
 
-- **Multiple-token queries**
-  - A query like `garlic oil` should be treated as multiple tokens
-  - Recipes match if all tokens match somewhere in the recipe (name or ingredient list), using case-insensitive partial matching
-
-- **Search result stability**
-  - Searching is read-only
-  - Stored recipe order remains unchanged
-  - Results are returned as a new list
-
-### Sorting capabilities (advanced)
-Your project should already support sorting at presentation time, including:
-
-- **Sort by recipe name (A–Z / Z–A)**
+### Sorting
+- **Front-end sorting by recipe name**
   - Case-insensitive ordering
-  - Stable sorting preferred
+  - Supports ascending and descending order
+- **Stable and deterministic output**
+  - Secondary comparison used when names compare equal ignoring case
+  - Sorting does not permanently reorder stored data
 
-- **Secondary sort keys**
-  - If recipe names compare equal ignoring case, use a secondary key (such as original name, or insertion order) to ensure consistent output
+**Acceptance Criteria**
+- Searching does not mutate stored data. ✓
+- Sorting is applied only when presenting results. ✓
+- Recipe insertion order remains unchanged internally. ✓
+- Case-insensitive name search (partial matches) is supported. ✓
+- Ingredient-based and multi-token searches return correct results. 
+- Stable secondary sort behavior is implemented. 
 
-- **No storage mutation**
-  - Sorting must not permanently reorder the underlying stored list unless you explicitly document that behavior (default expectation: do not mutate)
+**Progress**
+- Partially complete  
+  - Case-insensitive name search implemented in `RecipeBook`
+  - Front-end name-based sorting implemented via `RecipeSorter`
+  - Ingredient-based search not yet implemented
+  - Multi-token search not yet implemented
+  - Secondary sort key for deterministic ordering not yet implemented
+
 
 ---
 
